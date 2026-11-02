@@ -1,0 +1,2 @@
+test: dotnet test src/tests/PlatformAutofill.Tests/
+tech: csharp, harmony, timberborn, mod
