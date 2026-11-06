@@ -1,2 +1,3 @@
 test: dotnet test src/tests/PlatformAutofill.Tests/
 tech: csharp, harmony, timberborn, mod
+repo_claude_settings: ignore
