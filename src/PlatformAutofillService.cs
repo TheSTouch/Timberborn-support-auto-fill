@@ -22,7 +22,7 @@ namespace PlatformAutofill
 {
     public class PlatformAutofillService : ILoadableSingleton, IUpdatableSingleton
     {
-        private static readonly bool DiagnosticLogging = true;
+        private static readonly bool DiagnosticLogging = false;
         private static readonly MethodInfo? AddAccessesAboveGroundMethod =
             typeof(HighBlockObjectAccessesAdder).GetMethod(
                 "AddAccessesAboveGround",
