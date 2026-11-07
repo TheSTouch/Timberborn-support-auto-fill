@@ -1,0 +1,238 @@
+{
+  "blocked": [
+    {
+      "id": 1,
+      "number": 1,
+      "reason": "branch farm/1-turn-off-diagnostic-logging-by-default is pushed, but origin is not on a forge the farm can open a pull request on (see farm-forge of) \u2014 session 'farm-Timberborn-support-auto-fill-1' still live, answer it from Remote Control",
+      "remote_control": null,
+      "since": "2026-11-07T10:16:10Z",
+      "title": "Turn off diagnostic logging by default",
+      "waits_on": "person"
+    }
+  ],
+  "claimable_here": 5,
+  "current": null,
+  "host": "linux",
+  "items": {
+    "blocked": 1,
+    "done": 0,
+    "running": 0,
+    "todo": 5,
+    "total": 6
+  },
+  "lane": "stalled",
+  "lane_started": "2026-11-06T15:36:07Z",
+  "main_green": {
+    "at": "2026-11-07T08:01:41Z",
+    "by": "main's own gate",
+    "sha": "7cd3fdda90816e3ea6fe080a06ad87d5b45c624e"
+  },
+  "project": "Timberborn-support-auto-fill",
+  "schema": 1,
+  "since": "2026-11-07T15:49:06Z",
+  "slots": {
+    "busy": 1,
+    "held_by_blocked": 1,
+    "occupied": [
+      {
+        "item": 1,
+        "slot": 1
+      }
+    ],
+    "total": 1
+  },
+  "stuck": [
+    {
+      "reason": "every one of its 1 slot(s) is held by a blocked item (#1) and #2 is waiting behind them. Answer one of those and the lane starts again by itself",
+      "since": "2026-11-07T10:16:35Z",
+      "why": "slots"
+    }
+  ],
+  "toolchains": {
+    "checked_at": "2026-11-07T15:49:00Z",
+    "gateway_techs": [
+      "unity",
+      "unity-android",
+      "unity-ios",
+      "unity-linux",
+      "unity-macos",
+      "unity-windows"
+    ],
+    "techs": [
+      {
+        "available": false,
+        "detail": "unity: the gateway is not answering at https://farm-job:8790 (farm-creds: farm-job:8790: [Errno -2] Name or service not known) \u2014 is farm-gateway running on this host?",
+        "state": "unusable",
+        "tech": "unity"
+      },
+      {
+        "available": false,
+        "detail": "swift: no swift toolchain on linux",
+        "state": "missing",
+        "tech": "swift"
+      },
+      {
+        "available": false,
+        "detail": "ios: a linux host cannot have it",
+        "state": "missing",
+        "tech": "ios"
+      },
+      {
+        "available": true,
+        "detail": "angular: node v24.22.2",
+        "state": "ok",
+        "tech": "angular"
+      },
+      {
+        "available": true,
+        "detail": "node: node v24.22.2",
+        "state": "ok",
+        "tech": "node"
+      },
+      {
+        "available": true,
+        "detail": "html: static site; node v24.22.2 available for tests",
+        "state": "ok",
+        "tech": "html"
+      },
+      {
+        "available": false,
+        "detail": "esp32: no PlatformIO or ESP-IDF on linux \u2014 pip install platformio",
+        "state": "missing",
+        "tech": "esp32"
+      },
+      {
+        "available": true,
+        "detail": "python: Python 3.11.2",
+        "state": "ok",
+        "tech": "python"
+      },
+      {
+        "available": true,
+        "detail": "dotnet: 10.0.403",
+        "state": "ok",
+        "tech": "dotnet"
+      },
+      {
+        "available": false,
+        "detail": "rust: no cargo on linux (rustup installs to ~/.cargo/bin)",
+        "state": "missing",
+        "tech": "rust"
+      },
+      {
+        "available": true,
+        "detail": "go: go version go1.27.1 linux/amd64",
+        "state": "ok",
+        "tech": "go"
+      },
+      {
+        "available": false,
+        "detail": "android: no Android SDK on linux (no sdkmanager in /fairm/project/android/sdk) \u2014 farm-tech install android",
+        "state": "missing",
+        "tech": "android"
+      },
+      {
+        "available": false,
+        "detail": "unity-ios: the gateway is not answering at https://farm-job:8790 (farm-creds: farm-job:8790: [Errno -2] Name or service not known) \u2014 is farm-gateway running on this host?",
+        "state": "unusable",
+        "tech": "unity-ios"
+      },
+      {
+        "available": false,
+        "detail": "unity-android: the gateway is not answering at https://farm-job:8790 (farm-creds: farm-job:8790: [Errno -2] Name or service not known) \u2014 is farm-gateway running on this host?",
+        "state": "unusable",
+        "tech": "unity-android"
+      },
+      {
+        "available": false,
+        "detail": "unity-windows: the gateway is not answering at https://farm-job:8790 (farm-creds: farm-job:8790: [Errno -2] Name or service not known) \u2014 is farm-gateway running on this host?",
+        "state": "unusable",
+        "tech": "unity-windows"
+      },
+      {
+        "available": false,
+        "detail": "unity-macos: the gateway is not answering at https://farm-job:8790 (farm-creds: farm-job:8790: [Errno -2] Name or service not known) \u2014 is farm-gateway running on this host?",
+        "state": "unusable",
+        "tech": "unity-macos"
+      },
+      {
+        "available": false,
+        "detail": "unity-linux: the gateway is not answering at https://farm-job:8790 (farm-creds: farm-job:8790: [Errno -2] Name or service not known) \u2014 is farm-gateway running on this host?",
+        "state": "unusable",
+        "tech": "unity-linux"
+      },
+      {
+        "available": false,
+        "detail": "android-emulator: no Android emulator on linux \u2014 farm-tech install android-emulator",
+        "state": "missing",
+        "tech": "android-emulator"
+      },
+      {
+        "available": false,
+        "detail": "codesign: a linux host cannot have it",
+        "state": "missing",
+        "tech": "codesign"
+      },
+      {
+        "available": false,
+        "detail": "notarize: a linux host cannot have it",
+        "state": "missing",
+        "tech": "notarize"
+      },
+      {
+        "available": false,
+        "detail": "windows: a linux host cannot have it",
+        "state": "missing",
+        "tech": "windows"
+      },
+      {
+        "available": false,
+        "detail": "macos: a linux host cannot have it",
+        "state": "missing",
+        "tech": "macos"
+      },
+      {
+        "available": false,
+        "detail": "macos-shell: a linux host cannot have it",
+        "state": "missing",
+        "tech": "macos-shell"
+      },
+      {
+        "available": false,
+        "detail": "ios-device: a linux host cannot have it",
+        "state": "missing",
+        "tech": "ios-device"
+      },
+      {
+        "available": false,
+        "detail": "safari: a linux host cannot have it",
+        "state": "missing",
+        "tech": "safari"
+      },
+      {
+        "available": false,
+        "detail": "ios-simulator: a linux host cannot have it",
+        "state": "missing",
+        "tech": "ios-simulator"
+      },
+      {
+        "available": false,
+        "detail": "pi-root: a linux host cannot have it",
+        "state": "missing",
+        "tech": "pi-root"
+      },
+      {
+        "available": false,
+        "detail": "display: /tmp/.X11-unix/X99 is live and there is no GPU at /dev/dri (D557)",
+        "state": "missing",
+        "tech": "display"
+      },
+      {
+        "available": true,
+        "detail": "linux: this host runs Linux",
+        "state": "ok",
+        "tech": "linux"
+      }
+    ]
+  }
+}
