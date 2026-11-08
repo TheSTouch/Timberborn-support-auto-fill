@@ -39,21 +39,23 @@ namespace PlatformAutofill
             _root = BuildUI();
             _root.style.display = DisplayStyle.None;
             _eventBus.Register(this);
+            _service.Toggled += RefreshButtonState;
             return _root;
         }
 
         [OnEvent]
         public void OnToolEntered(ToolEnteredEvent evt)
         {
-            _root!.style.display = evt.Tool is BlockObjectTool blockObjectTool
-                && _service.SupportsAutofill(blockObjectTool.Template)
-                ? DisplayStyle.Flex
-                : DisplayStyle.None;
+            bool supported = evt.Tool is BlockObjectTool blockObjectTool
+                && _service.SupportsAutofill(blockObjectTool.Template);
+            _service.IsSupportedToolActive = supported;
+            _root!.style.display = supported ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
         [OnEvent]
         public void OnToolExited(ToolExitedEvent evt)
         {
+            _service.IsSupportedToolActive = false;
             _root!.style.display = DisplayStyle.None;
         }
 
@@ -89,7 +91,6 @@ namespace PlatformAutofill
         private void OnToggleClicked()
         {
             _service.Toggle();
-            RefreshButtonState();
         }
 
         private void RefreshButtonState()
