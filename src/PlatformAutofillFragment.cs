@@ -18,6 +18,7 @@ namespace PlatformAutofill
 
         private VisualElement? _root;
         private Button _toggleButton = null!;
+        private readonly Button?[] _maxSupportButtons = new Button?[3];
 
         [Inject]
         public void InjectDependencies(PlatformAutofillService service, EventBus eventBus)
@@ -82,8 +83,45 @@ namespace PlatformAutofill
             _toggleButton.style.unityFontStyleAndWeight = FontStyle.Bold;
             root.Add(_toggleButton);
 
+            string[] sizeLabels = { "1", "2", "3" };
+            for (int i = 0; i < sizeLabels.Length; i++)
+            {
+                int index = i;
+                var button = new Button(() => OnMaxSupportClicked(index));
+                button.text = sizeLabels[i];
+                button.tooltip = "Max platform size: " + sizeLabels[i];
+                button.style.width    = 22;
+                button.style.height   = 22;
+                button.style.fontSize = 11;
+                button.style.marginLeft = i == 0 ? 6 : 0;
+                _maxSupportButtons[i] = button;
+                root.Add(button);
+            }
+
             RefreshButtonState();
+            RefreshMaxSupportState();
             return root;
+        }
+
+        private void OnMaxSupportClicked(int index)
+        {
+            _service.SetMaxSupport(index);
+            _service.ClearSupportPreviews();
+            RefreshMaxSupportState();
+        }
+
+        private void RefreshMaxSupportState()
+        {
+            for (int i = 0; i < _maxSupportButtons.Length; i++)
+            {
+                var button = _maxSupportButtons[i];
+                if (button == null) continue;
+                bool selected = i == _service.MaxSupportIndex;
+                button.style.color = selected
+                    ? new Color(0.3f, 0.95f, 0.4f)
+                    : new Color(0.65f, 0.65f, 0.65f);
+                button.style.unityFontStyleAndWeight = selected ? FontStyle.Bold : FontStyle.Normal;
+            }
         }
 
         private void OnToggleClicked()
