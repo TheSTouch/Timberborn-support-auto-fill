@@ -1,4 +1,4 @@
-- [~] #1 Turn off diagnostic logging by default
+- [ ] #1 Turn off diagnostic logging by default
       - `DiagnosticLogging` in `PlatformAutofillService` is hardcoded to `true`, flooding the player log in every session
       - accept: `DiagnosticLogging` defaults to `false`; gate passes
       from: preparation, stage backlog, signed 2026-11-02 by owner; read .farm/preparation/
@@ -7,4 +7,4 @@
       put away: answer: none
       put away: summary: commits: Merge branch 'main' into farm/1-turn-off-diagnostic-logging-by-default;Merge branch 'main' into farm/1-turn-off-diagnostic-logging-by-default;Turn off diagnostic logging by default; last on screen: ❯  ────────────────────────────────────────────────────────────────────────────────   ⏵⏵ auto mode on (shift+tab to cycle) · install gh for PR status · ← for age…
       put away: resumed: 2026-11-08T17:30:11Z
-      farm: claimed 2026-11-08T17:31:19+00:00 on linux, slot 1
+      farm: ran out of its 7200s budget without signalling, and had nothing on screen for a person — requeued rather than blocked. What it had is on farm/timeout-1: 0 uncommitted file(s), 4 commit(s) not on main — start from there, not from scratch
