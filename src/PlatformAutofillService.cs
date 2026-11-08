@@ -13,14 +13,16 @@ using Timberborn.FactionSystem;
 using Timberborn.GameFactionSystem;
 using Timberborn.Buildings;
 using Timberborn.PathSystem;
+using Timberborn.Persistence;
 using Timberborn.SingletonSystem;
 using Timberborn.TerrainSystem;
 using Timberborn.TemplateSystem;
+using Timberborn.WorldPersistence;
 using UnityEngine;
 
 namespace PlatformAutofill
 {
-    public class PlatformAutofillService : ILoadableSingleton, IUpdatableSingleton
+    public class PlatformAutofillService : ILoadableSingleton, IUpdatableSingleton, ISaveableSingleton
     {
         private static readonly bool DiagnosticLogging = true;
         private static readonly MethodInfo? AddAccessesAboveGroundMethod =
@@ -35,6 +37,8 @@ namespace PlatformAutofill
             typeof(BlockObjectAccessible).GetMethod(
                 "UpdateAccesses",
                 BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        private static readonly SingletonKey SaveKey = new SingletonKey(PlatformAutofillRules.SaveKeyName);
+        private static readonly PropertyKey<bool> IsEnabledKey = new PropertyKey<bool>(PlatformAutofillRules.IsEnabledKeyName);
         public int MaxSupportIndex { get; private set; } = 2;
         public bool IsEnabled { get; private set; } = false;
         public bool IsPlacingSupports { get; private set; } = false;
@@ -61,6 +65,7 @@ namespace PlatformAutofill
         private PreviewFactory _previewFactory = null!;
         private PreviewShower _previewShower = null!;
         private TemplateNameRetriever _nameRetriever = null!;
+        private ISingletonLoader _singletonLoader = null!;
 
         [Inject]
         public void InjectDependencies(
@@ -74,7 +79,8 @@ namespace PlatformAutofill
             PreviewBlockService previewBlockService,
             PreviewFactory previewFactory,
             PreviewShower previewShower,
-            TemplateNameRetriever nameRetriever)
+            TemplateNameRetriever nameRetriever,
+            ISingletonLoader singletonLoader)
         {
             _blockService = blockService;
             _factionService = factionService;
@@ -87,12 +93,23 @@ namespace PlatformAutofill
             _previewFactory = previewFactory;
             _previewShower = previewShower;
             _nameRetriever  = nameRetriever;
+            _singletonLoader = singletonLoader;
         }
 
         public void Load()
         {
             Instance = this;
+            if (_singletonLoader.TryGetSingleton(SaveKey, out IObjectLoader loader))
+            {
+                bool hasSaved = loader.Has(IsEnabledKey);
+                IsEnabled = PlatformAutofillRules.ResolveEnabled(hasSaved, hasSaved && loader.Get(IsEnabledKey));
+            }
             RefreshPlaceableBlockSpecs();
+        }
+
+        public void Save(ISingletonSaver singletonSaver)
+        {
+            singletonSaver.GetSingleton(SaveKey).Set(IsEnabledKey, IsEnabled);
         }
 
         public void UpdateSingleton()

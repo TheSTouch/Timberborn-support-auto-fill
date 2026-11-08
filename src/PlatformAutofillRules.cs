@@ -8,6 +8,12 @@ namespace PlatformAutofill
     {
         internal static readonly string[] SupportTemplatePrefixes = { "Platform", "DoublePlatform", "TriplePlatform" };
 
+        internal const string SaveKeyName = "PlatformAutofill";
+        internal const string IsEnabledKeyName = "IsEnabled";
+
+        // Saves made before persistence existed have no value: stay disabled.
+        internal static bool ResolveEnabled(bool hasSaved, bool saved) => hasSaved && saved;
+
         internal static int ClampSupportIndex(int supportIndex)
         {
             return Math.Max(0, Math.Min(supportIndex, SupportTemplatePrefixes.Length - 1));
