@@ -160,6 +160,11 @@ namespace PlatformAutofill
                 out searchSummary);
         }
 
+        internal static bool ShouldToggleOnHotkey(bool keyPressed, bool supportedToolActive, bool placingSupports)
+        {
+            return keyPressed && supportedToolActive && !placingSupports;
+        }
+
         internal readonly struct OccupiedZRange
         {
             internal OccupiedZRange(int minZ, int maxZ)

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+- Added the F7 hotkey to toggle autofill while a supported placement tool is active.
+
 ## [1.0.4] - 2026-06-07
 
 - Fixed an autofill bug where supports could be planned through already occupied cells below the dragged structure.

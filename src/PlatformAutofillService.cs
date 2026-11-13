@@ -38,6 +38,9 @@ namespace PlatformAutofill
         public int MaxSupportIndex { get; private set; } = 2;
         public bool IsEnabled { get; private set; } = false;
         public bool IsPlacingSupports { get; private set; } = false;
+        public bool IsSupportedToolActive { get; set; } = false;
+        public event Action? Toggled;
+        public static KeyCode ToggleKey { get; set; } = KeyCode.F7;
 
         public static PlatformAutofillService? Instance { get; private set; }
 
@@ -97,6 +100,17 @@ namespace PlatformAutofill
 
         public void UpdateSingleton()
         {
+            bool keyPressed = false;
+            if (IsSupportedToolActive)
+            {
+                try { keyPressed = Input.GetKeyDown(ToggleKey); }
+                catch (InvalidOperationException) { }
+            }
+            if (PlatformAutofillRules.ShouldToggleOnHotkey(keyPressed, IsSupportedToolActive, IsPlacingSupports))
+            {
+                Toggle();
+            }
+
             if (_pendingSupportPlacements.Count == 0 || IsPlacingSupports)
             {
                 return;
@@ -152,6 +166,7 @@ namespace PlatformAutofill
             {
                 ClearSupportPreviews();
             }
+            Toggled?.Invoke();
         }
 
         public void SetMaxSupport(int index) => MaxSupportIndex = PlatformAutofillRules.ClampSupportIndex(index);

@@ -97,6 +97,10 @@
       <HintPath>$(TIMBERBORN_MANAGED)/UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(TIMBERBORN_MANAGED)/UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.UIElementsModule">
       <HintPath>$(TIMBERBORN_MANAGED)/UnityEngine.UIElementsModule.dll</HintPath>
       <Private>false</Private>

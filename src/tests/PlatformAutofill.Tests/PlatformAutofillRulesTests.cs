@@ -305,5 +305,15 @@ namespace PlatformAutofill.Tests
             public int X { get; }
             public int Y { get; }
         }
-    }
+    
+        [Theory]
+        [InlineData(true, true, false, true)]
+        [InlineData(false, true, false, false)]
+        [InlineData(true, false, false, false)]
+        [InlineData(true, true, true, false)]
+        public void ShouldToggleOnHotkey_RequiresKeyAndSupportedTool(bool key, bool active, bool placing, bool expected)
+        {
+            Assert.Equal(expected, PlatformAutofillRules.ShouldToggleOnHotkey(key, active, placing));
+        }
+}
 }
