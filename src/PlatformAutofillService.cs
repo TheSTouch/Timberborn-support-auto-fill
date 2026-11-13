@@ -137,6 +137,8 @@ namespace PlatformAutofill
             {
                 _pendingSupportPlacements.Clear();
                 _pendingSupportCoords.Clear();
+                // Allow a single click at the same coordinate to autofill again (e.g. after deleting the block).
+                _lastPlacedCoord = new Vector3Int(int.MinValue, int.MinValue, int.MinValue);
                 IsPlacingSupports = false;
             }
         }
@@ -828,12 +830,6 @@ namespace PlatformAutofill
                 return false;
             }
 
-            bool isPathTemplate = blueprint.GetSpec<PathSpec>() != null;
-            if (!IsDragLayout(template.Layout) && !isPathTemplate)
-            {
-                return false;
-            }
-
             string resolvedTemplateName = templateName!;
             BlockObjectSpec? runtimeSpec = blueprint.GetSpec<BlockObjectSpec>();
             if (runtimeSpec == null)
@@ -889,11 +885,6 @@ namespace PlatformAutofill
                     $"[PlatformAutofill] support dry-run failed for '{templateName}' at {placement.Coordinates}: {ex}");
                 return false;
             }
-        }
-
-        private static bool IsDragLayout(BlockObjectLayout layout)
-        {
-            return layout != BlockObjectLayout.Single;
         }
 
         private bool TryResolveFaction(string templateName, out string? faction)

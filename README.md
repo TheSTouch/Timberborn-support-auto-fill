@@ -1,6 +1,6 @@
 # Platform Autofill
 
-A Timberborn mod that adds an **Autofill** toggle to every drag-placeable tool (platforms, paths, overhangs, and similar blocks). When active, dragging across a height change automatically inserts support columns underneath to keep the top surface level with your drag start point.
+A Timberborn mod that adds an **Autofill** toggle to every placeable tool with a matching platform support (platforms, paths, overhangs, and similar blocks). When active, dragging across a height change automatically inserts support columns underneath to keep the top surface level with your drag start point.
 
 See [CHANGELOG.md](CHANGELOG.md) for version history and the `1.0.0` release summary.
 
@@ -15,7 +15,7 @@ Support previews are shown in real time while you drag, so you can see exactly w
 
 ## Supported block types
 
-The autofill toggle appears for any tool whose layout is draggable (line or area) or that uses the path system. This includes:
+The autofill toggle appears for any tool that has a platform support for its faction (single-click, line, area or path). This includes:
 
 - Platforms and platform variants
 - Paths
@@ -37,5 +37,4 @@ Place the `Platform Autofill` folder (containing `manifest.json` and `PlatformAu
 
 ## Known limitations
 
-- The autofill only triggers during drag-placement. Single-click placements are not affected.
 - Placement validation bypass is limited to blocks that are almost-valid (e.g. floating in air above terrain); blocks that overlap existing structures are still rejected.
