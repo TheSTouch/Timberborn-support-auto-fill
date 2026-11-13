@@ -61,6 +61,10 @@
       <HintPath>$(TIMBERBORN_MANAGED)/Timberborn.Coordinates.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="Timberborn.Persistence">
+      <HintPath>$(TIMBERBORN_MANAGED)/Timberborn.Persistence.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="Timberborn.SingletonSystem">
       <HintPath>$(TIMBERBORN_MANAGED)/Timberborn.SingletonSystem.dll</HintPath>
       <Private>false</Private>

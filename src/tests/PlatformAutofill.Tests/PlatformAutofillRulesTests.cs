@@ -7,6 +7,16 @@ namespace PlatformAutofill.Tests
     public class PlatformAutofillRulesTests
     {
         [Theory]
+        [InlineData(false, false, false)]
+        [InlineData(false, true, false)]
+        [InlineData(true, false, false)]
+        [InlineData(true, true, true)]
+        public void ResolveEnabled_RestoresSavedStateAndDefaultsToDisabled(bool hasSaved, bool saved, bool expected)
+        {
+            Assert.Equal(expected, PlatformAutofillRules.ResolveEnabled(hasSaved, saved));
+        }
+
+        [Theory]
         [InlineData(-4, 0)]
         [InlineData(0, 0)]
         [InlineData(1, 1)]
